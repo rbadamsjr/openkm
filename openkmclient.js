@@ -3,11 +3,11 @@ var Client = require('node-rest-client').Client;
 
 module.exports = class openkmClient {
 
-   constructor(hostandport, user, password) {
+   constructor(hostandport, user, password,isHttps = false) {
        this.openkmHost = hostandport
        this.openkmUser = user
        this.openkmPwd = password
-
+       this.protocal = (isHttps === 'true') ? 'https://' : 'http://';
        var options_auth = { user: user, password: password };
        this.client = new Client(options_auth);
    }
