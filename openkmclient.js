@@ -12,7 +12,7 @@ module.exports = class openkmClient {
        this.client = new Client(options_auth);
    }
 
-   AddDocument(docName) {
+   addDocument(docName) {
    //   # Add file
    //  curl -u okmAdmin:admin -H "Accept: application/json" \
    // -X POST -F docPath=/okm:root/newDoc.txt -F content=@newDoc.txt \
@@ -24,7 +24,7 @@ module.exports = class openkmClient {
        console.log("openkmClient " + docName);
    }
 
-   AddFolder(folderName) {
+   addFolder(folderName) {
    //   # Create a folder
    //  $ curl -u okmAdmin:admin -H "Accept: application/json" \
    // -X POST -H "Content-Type: application/json" -d '/okm:root/newfolder' \
@@ -43,11 +43,11 @@ module.exports = class openkmClient {
        console.log("openkmClient " + docId);
    }
 
-   listFilesByName(folderName) {
+   listFilesByFolderName(folderName) {
        console.log("openkmClient " + folderName);
    }
 
-   listFilesById(folderId) {
+   listFilesByFolderId(folderId) {
    //   # list files in folder
    // curl -u okmAdmin:admin -H "Accept: application/json" \
    // http://localhost:8080/OpenKM/services/rest/folder/getChildren?fldId=3492d662-b58e-417c-85b6-930ad0c6c3cf
