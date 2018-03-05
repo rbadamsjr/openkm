@@ -1,0 +1,18 @@
+{
+  "name": "openkm",
+  "version": "1.0.0",
+  "description": "Used to add content to a openkm server",
+  "main": "openkmclient.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "openkm",
+    "node"
+  ],
+  "author": "siadmin <admin@smartideasllc.net> (www.smartideasllc.net)",
+  "license": "ISC",
+  "dependencies": {
+    "node-rest-client": "^3.1.0"
+  }
+}
