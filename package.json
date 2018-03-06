@@ -13,6 +13,7 @@
   "author": "siadmin <admin@smartideasllc.net> (www.smartideasllc.net)",
   "license": "ISC",
   "dependencies": {
-    "node-rest-client": "^3.1.0"
+    "node-rest-client": "^3.1.0",
+    "winston": "^2.4.0"
   }
 }
