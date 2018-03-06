@@ -5,6 +5,7 @@ var logger = require('winston');
 
 module.exports = class openkmClient {
 
+   // constructor
    constructor(hostandport, user, password,isHttps = false) {
        this.openkmHost = hostandport
        this.openkmUser = user
@@ -37,9 +38,6 @@ module.exports = class openkmClient {
    //  curl -u okmAdmin:admin -H "Accept: application/json" \
    // -X POST -F docPath=/okm:root/newDoc.txt -F content=@newDoc.txt \
    // http://159.89.185.142:8080/OpenKM/services/rest/document/createSimple
-   var args = {
-     headers: { "Content-Type": "application/json" }
-   }
    var url = this.protocal+this.openkmHost+"/OpenKM/services/rest/document/createSimple"
        logger.log("openkmClient " + docName);
    }
@@ -49,6 +47,16 @@ module.exports = class openkmClient {
    //  $ curl -u okmAdmin:admin -H "Accept: application/json" \
    // -X POST -H "Content-Type: application/json" -d '/okm:root/newfolder' \
    // http://localhost:8080/OpenKM/services/rest/folder/createSimple
+       var url = this.protocal+this.openkmHost+"/OpenKM/services/rest/folder/createSimple"
+       var data = ""
+       var localArgs.push(this.args)
+       localArgs.push(data)
+       this.client.post(url, localArgs, function (data, response) {
+            // parsed response body as js object
+            console.log(data);
+            // raw response
+            console.log(response);
+        });
        logger.log("openkmClient " + folderName);
    }
 
