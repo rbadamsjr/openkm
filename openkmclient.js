@@ -15,7 +15,7 @@ module.exports = class openkmClient {
        if(isHttps){
          this.protocal = 'https://'
        }
-
+       const openkmRootPath = '/okm:root/'
        var options_auth = { user: user, password: password };
 
        var args = {
@@ -48,7 +48,7 @@ module.exports = class openkmClient {
    // -X POST -H "Content-Type: application/json" -d '/okm:root/newfolder' \
    // http://localhost:8080/OpenKM/services/rest/folder/createSimple
        var url = this.protocal+this.openkmHost+"/OpenKM/services/rest/folder/createSimple"
-       var data = ""
+       var data = { path: openkmRootPath+folderName }
        var localArgs.push(this.args)
        localArgs.push(data)
        this.client.post(url, localArgs, function (data, response) {
