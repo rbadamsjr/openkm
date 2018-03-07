@@ -33,7 +33,8 @@ module.exports = class openkmClient {
      logger.log('debug',isHttps)
    }
 
-   addDocument(docName) {
+   // add document to
+   addDocument(filepath,docName) {
    //   # Add file
    //  curl -u okmAdmin:admin -H "Accept: application/json" \
    // -X POST -F docPath=/okm:root/newDoc.txt -F content=@newDoc.txt \
@@ -64,7 +65,7 @@ module.exports = class openkmClient {
         });
    }
 
-   getDocumentByName(docName) {
+   getDocumentByName(filepath,docName) {
        logger.log('debug',"getDocumentByName method");
    }
 
