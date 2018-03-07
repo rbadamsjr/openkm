@@ -15,7 +15,7 @@ module.exports = class openkmClient {
        if(isHttps){
          this.protocal = 'https://'
        }
-       const openkmRootPath = '/okm:root/'
+       this.openkmRootPath = "/okm:root/"
        var options_auth = { user: user, password: password };
 
        var args = {
@@ -44,28 +44,33 @@ module.exports = class openkmClient {
 
    addFolder(folderName) {
    //   # Create a folder
-   //  $ curl -u okmAdmin:admin -H "Accept: application/json" \
-   // -X POST -H "Content-Type: application/json" -d '/okm:root/newfolder' \
-   // http://localhost:8080/OpenKM/services/rest/folder/createSimple
+      logger.log('debug','addfolder method');
        var url = this.protocal+this.openkmHost+"/OpenKM/services/rest/folder/createSimple"
-       var data = { path: openkmRootPath+folderName }
-       var localArgs.push(this.args)
-       localArgs.push(data)
+       var localArgs = {
+         data: this.openkmRootPath+folderName,
+         headers: { "Content-Type": "application/json","Accept":"application/json" }
+       }
+
        this.client.post(url, localArgs, function (data, response) {
             // parsed response body as js object
-            console.log(data);
+            if(response.statusCode == 200){
+              logger.log('debug','Created Folder:'+folderName+', uuid:'+data.uuid);
+              return data.uuid;
+            }else{
+              return -1;
+            }
             // raw response
-            console.log(response);
+          //  console.log(response);
         });
-       logger.log("openkmClient " + folderName);
    }
 
    getDocumentByName(docName) {
-       this.logger.log("openkmClient " + docName);
+       logger.log('debug',"getDocumentByName method");
    }
 
    getDocumentById(docId) {
    //   # get File
+    logger.log('debug',"getDocumentById method");
    // curl -u web:web \
    // http://159.89.185.142:8080/OpenKM/services/rest/document/getContent?docId=303944b5-5b35-4b7a-a44e-a74bffe54df3
        logger.log("openkmClient " + docId);
