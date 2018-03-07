@@ -22,7 +22,9 @@ module.exports = class openkmClient {
          headers: { "Content-Type": "application/json","Accept":"application/json" }
        }
 
-       this.client = new Client(options_auth);
+       this.client = new Client(options_auth).on('error', function (err) {
+         logger.log('error', err);
+        });
 
        logger.configure({
             transports: [
@@ -32,6 +34,7 @@ module.exports = class openkmClient {
 
      logger.log('debug',isHttps)
    }
+
 
    // add document to
    addDocument(filepath,docName) {
@@ -45,6 +48,7 @@ module.exports = class openkmClient {
 
    addFolder(folderName) {
    //   # Create a folder
+
       logger.log('debug','addfolder method');
        var url = this.protocal+this.openkmHost+"/OpenKM/services/rest/folder/createSimple"
        var localArgs = {
@@ -52,17 +56,21 @@ module.exports = class openkmClient {
          headers: { "Content-Type": "application/json","Accept":"application/json" }
        }
 
-       this.client.post(url, localArgs, function (data, response) {
+       this.client.post(url, localArgs, function (data, response,error) {
             // parsed response body as js object
+
             if(response.statusCode == 200){
               logger.log('debug','Created Folder:'+folderName+', uuid:'+data.uuid);
               return data.uuid;
             }else{
-              return -1;
+              logger.log('error','Error, unable to create folder');
+              logger.log('error',response.statusCode);
+              return -1
             }
             // raw response
           //  console.log(response);
         });
+
    }
 
    getDocumentByName(filepath,docName) {
